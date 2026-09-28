@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Xcode — build output and per-user state
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# The generated project file IS tracked: it is derived from the file tree by
+# Tools/generate_xcodeproj.py, and the shared scheme under xcshareddata/ has to
+# travel with it so Run and Test work on a fresh clone.

@@ -1,0 +1,10 @@
+# Keep LF everywhere, including on Windows checkouts.
+* text=auto eol=lf
+
+# The Quran text files are addressed by byte offset from their companion .idx
+# files. Any line-ending translation would shift every offset and the app would
+# read torn ayahs. Never touch these — check them out exactly as stored.
+Shared/Content/Quran/*.txt -text
+Shared/Content/Quran/*.idx -text binary
+
+*.png binary

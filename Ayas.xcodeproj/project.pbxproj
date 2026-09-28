@@ -1,0 +1,1187 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		06471A4C9A5397C30A2C1004 = {
+			fileRef = 5D37E5A0BDCB519CA8F2BC07;
+			isa = PBXBuildFile;
+		};
+		06DAF221B31F5D73594ADC57 = {
+			fileRef = 54465BB0427A7BA22C8A707F;
+			isa = PBXBuildFile;
+		};
+		09F704CA27A14E44C5BC16DA = {
+			fileRef = 53827865A9632EF3C2AE0233;
+			isa = PBXBuildFile;
+		};
+		0E19D871F5D69A60A293BFE6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DocumentStorage.swift;
+			sourceTree = "<group>";
+		};
+		0FF6D56399A32A955C8E5ED3 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1313468C6DB515F452D30263 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.entitlements;
+			path = AyasWidget.entitlements;
+			sourceTree = "<group>";
+		};
+		14898FAEF69FC387C40123DD = {
+			children = (
+				2D19F7659D0D88014B924683,
+				732C0721869E9E0E979D551F,
+				CAFD1A2C276608F3E160AE44,
+			);
+			isa = PBXGroup;
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		152E55DCDE457596B41AA6F2 = {
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = 539C7E544B3FB2D37F04A325;
+			remoteInfo = AyasWidgetExtension;
+		};
+		15C72FE4F31215581D64C606 = {
+			fileRef = 3A4B4A8AEC707E27C206982C;
+			isa = PBXBuildFile;
+		};
+		1841396927D5B419B21AA017 = {
+			fileRef = D50CA8D554D689B32D7BE112;
+			isa = PBXBuildFile;
+		};
+		193F76A7F33BD653D4DDA991 = {
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = Ayas.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1B96A32F7F11DD8D992C4C74 = {
+			fileRef = 732C0721869E9E0E979D551F;
+			isa = PBXBuildFile;
+		};
+		1DDA8E45CD176465E13E446B = {
+			fileRef = 9FF2815AE330F97F8CBD2F1C;
+			isa = PBXBuildFile;
+		};
+		1E08E9C16B407EA3B0D29AC6 = {
+			fileRef = 4B2996326C19F90BF19584E6;
+			isa = PBXBuildFile;
+		};
+		21DD2F5527C70DF3E051DDA3 = {
+			fileRef = 2D19F7659D0D88014B924683;
+			isa = PBXBuildFile;
+		};
+		225B0689379E7C9C92E1AB97 = {
+			children = (
+				4E0D9FC3CD0E70F473C11605,
+				F0ABB819EF88C7BD356FE51A,
+				57081A7FB657D00053BE84AB,
+				EB3D8A9D47DC6BE83D3EB147,
+				CB0B830669DF6E8174C08BC6,
+			);
+			isa = PBXGroup;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		23167EE589CBC31395919A95 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitEditorView.swift;
+			sourceTree = "<group>";
+		};
+		239B62692AEA46C9DFCC34D4 = {
+			fileRef = 0E19D871F5D69A60A293BFE6;
+			isa = PBXBuildFile;
+		};
+		24CD5FA79A4CCBB7B6056A43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = SettingsView.swift;
+			sourceTree = "<group>";
+		};
+		26BC26372F21601E4B726EF9 = {
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).AyasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ayas.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ayas";
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		26BF51886630E70F2497073B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Typography.swift;
+			sourceTree = "<group>";
+		};
+		271B8272485F29C900AEFB08 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DayKey.swift;
+			sourceTree = "<group>";
+		};
+		275B45E8DD60D98BAB532833 = {
+			children = (
+				D50CA8D554D689B32D7BE112,
+				271B8272485F29C900AEFB08,
+				82D947927BEF97E4E8D9BA99,
+				6589515E4EF8E97167B7E5D3,
+				9FF2815AE330F97F8CBD2F1C,
+				DFD3814BEF1A2F12C1A8E0BC,
+				3227B207D2412670FE7A1E61,
+			);
+			isa = PBXGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		27F57202BE6D7C4D11443C81 = {
+			fileRef = B3E6BECCCF14031F69F7B6E5;
+			isa = PBXBuildFile;
+		};
+		2D19F7659D0D88014B924683 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = CompleteHabitIntent.swift;
+			sourceTree = "<group>";
+		};
+		3227B207D2412670FE7A1E61 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitSnapshot.swift;
+			sourceTree = "<group>";
+		};
+		323C972190D92200701F2E7A = {
+			fileRef = 24CD5FA79A4CCBB7B6056A43;
+			isa = PBXBuildFile;
+		};
+		3451744C1E4385F358881E68 = {
+			buildActionMask = 2147483647;
+			files = (
+				594A8B4B648009D79266FA70,
+				547A3143E023C6338600B0CE,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35A52E32559A7D3DA7190539 = {
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = C67E3CEDBD15453ED2AB9ED3;
+			remoteInfo = Ayas;
+		};
+		36BA9D4E6F793E26830F3BAA = {
+			fileRef = 271B8272485F29C900AEFB08;
+			isa = PBXBuildFile;
+		};
+		36FB7423B596ABFF53D53DE3 = {
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "AyasWidget/AyasWidget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "AyasWidget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).Ayas.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		3988AB1BA2A4F63F7C97B473 = {
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).AyasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ayas.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ayas";
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		3A4B4A8AEC707E27C206982C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = CompletionMark.swift;
+			sourceTree = "<group>";
+		};
+		3ADCEC88C1FFF3F17FC2FF0E = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.xcconfig;
+			path = Ayas.xcconfig;
+			sourceTree = "<group>";
+		};
+		3D65EBDCA0E36D95CF8D8AB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AyasWidgetBundle.swift;
+			sourceTree = "<group>";
+		};
+		3D922E1BB7E67DBF5F45F312 = {
+			fileRef = D2E9387397E249FB7EFB1A07;
+			isa = PBXBuildFile;
+		};
+		3E5EECCD1E74A9EA3D59ABF1 = {
+			fileRef = 82D947927BEF97E4E8D9BA99;
+			isa = PBXBuildFile;
+		};
+		40A028FA2A6B8219A7E016DC = {
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "AyasWidget/AyasWidget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "AyasWidget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).Ayas.widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		420807CD9587EFE87C8153AA = {
+			children = (
+				EC7995B86F59190E4BD9652D,
+				C5F17E98C932A45CC7665A3D,
+				7A726891E6C409B36C323EA4,
+				708844DF4706134F211FB87D,
+				C64F91A36BC1DFFBFBF7BCE4,
+				BE7037BF8AB10FFFA4399CDB,
+				8D559BD6EA6AE164F11C5AC7,
+			);
+			isa = PBXGroup;
+			sourceTree = "<group>";
+		};
+		42788065CF41F016AD3E5CEF = {
+			children = (
+				D83CA5D613D86D02ABDCB9BD,
+			);
+			isa = PBXGroup;
+			path = Support;
+			sourceTree = "<group>";
+		};
+		4296BEA80F42B6759468087E = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.entitlements;
+			path = Ayas.entitlements;
+			sourceTree = "<group>";
+		};
+		46F86FAA6BBF9AC94A7E4595 = {
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					539C7E544B3FB2D37F04A325 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					79EB21136EC1F09FD656CEFD = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C67E3CEDBD15453ED2AB9ED3;
+					};
+					C67E3CEDBD15453ED2AB9ED3 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 5A768B1832534E19889A4437;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			isa = PBXProject;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 420807CD9587EFE87C8153AA;
+			productRefGroup = 8D559BD6EA6AE164F11C5AC7;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C67E3CEDBD15453ED2AB9ED3,
+				539C7E544B3FB2D37F04A325,
+				79EB21136EC1F09FD656CEFD,
+			);
+		};
+		4B2996326C19F90BF19584E6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Palette.swift;
+			sourceTree = "<group>";
+		};
+		4C3780B315179DC3B3EDC1DC = {
+			fileRef = BA658E5ACC5A869CA8862420;
+			isa = PBXBuildFile;
+		};
+		4E0D9FC3CD0E70F473C11605 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AyahBlock.swift;
+			sourceTree = "<group>";
+		};
+		519B07BCE69DE0BA3891E13D = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5289033F5B139C49AE66F1DB = {
+			buildConfigurations = (
+				82DDC8E3939673A212AB1781,
+				D4AE45994EC30D181EC5AF5C,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		53827865A9632EF3C2AE0233 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DayKeyTests.swift;
+			sourceTree = "<group>";
+		};
+		539C7E544B3FB2D37F04A325 = {
+			buildConfigurationList = 86710D00CF12B0BA06C52867;
+			buildPhases = (
+				7C5FA2642CFA62BB8CAEAA7F,
+				74539ABCC85381182EAFCBCD,
+				A967E8DED626F636B127B998,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			isa = PBXNativeTarget;
+			name = AyasWidgetExtension;
+			productName = AyasWidgetExtension;
+			productReference = 717895DDB3D5218CC1607D18;
+			productType = "com.apple.product-type.app-extension";
+		};
+		54465BB0427A7BA22C8A707F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitWidget.swift;
+			sourceTree = "<group>";
+		};
+		547A3143E023C6338600B0CE = {
+			fileRef = AB10DF46D753B80C17861EE6;
+			isa = PBXBuildFile;
+		};
+		5533C6A6730B7611FF03F7AF = {
+			fileRef = 6589515E4EF8E97167B7E5D3;
+			isa = PBXBuildFile;
+		};
+		568BA1EF2EC6F51CF508999C = {
+			fileRef = 3227B207D2412670FE7A1E61;
+			isa = PBXBuildFile;
+		};
+		5696B1ECA798F5C068EAA822 = {
+			fileRef = CB0B830669DF6E8174C08BC6;
+			isa = PBXBuildFile;
+		};
+		57081A7FB657D00053BE84AB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = EmptyStateView.swift;
+			sourceTree = "<group>";
+		};
+		594A8B4B648009D79266FA70 = {
+			fileRef = 8EB6D3266B4AA84E7314D694;
+			isa = PBXBuildFile;
+		};
+		59C6D1142CA7251B4C005E74 = {
+			children = (
+				AB10DF46D753B80C17861EE6,
+				6CE995243D123B1C426CCC94,
+			);
+			isa = PBXGroup;
+			path = Content;
+			sourceTree = "<group>";
+		};
+		5A768B1832534E19889A4437 = {
+			buildConfigurations = (
+				9D06569DBDE3561E1B264406,
+				756BC0E927A1578DE4439E1D,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		5D37E5A0BDCB519CA8F2BC07 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AppGroup.swift;
+			sourceTree = "<group>";
+		};
+		63FBCDEAF513BEE4873B7270 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = Info.plist;
+			sourceTree = "<group>";
+		};
+		6589515E4EF8E97167B7E5D3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Habit.swift;
+			sourceTree = "<group>";
+		};
+		6BCEE0BA21084AFF80503198 = {
+			fileRef = DFD3814BEF1A2F12C1A8E0BC;
+			isa = PBXBuildFile;
+		};
+		6BE83BA88D03605E3EFFB3D7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = PersistenceTests.swift;
+			sourceTree = "<group>";
+		};
+		6CE995243D123B1C426CCC94 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = QuranLibrary.swift;
+			sourceTree = "<group>";
+		};
+		708844DF4706134F211FB87D = {
+			children = (
+				3ADCEC88C1FFF3F17FC2FF0E,
+			);
+			isa = PBXGroup;
+			path = Config;
+			sourceTree = "<group>";
+		};
+		717895DDB3D5218CC1607D18 = {
+			explicitFileType = "wrapper.app-extension";
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = AyasWidgetExtension.appex;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		725968E17A9EAFD55E801466 = {
+			fileRef = DCA8818AD3B59B26A478A039;
+			isa = PBXBuildFile;
+		};
+		732C0721869E9E0E979D551F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitEntity.swift;
+			sourceTree = "<group>";
+		};
+		74539ABCC85381182EAFCBCD = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		756BC0E927A1578DE4439E1D = {
+			baseConfigurationReference = 3ADCEC88C1FFF3F17FC2FF0E;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		77E653804AFC8DD108374C52 = {
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				77E8093CCF73BE7722190498,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77E8093CCF73BE7722190498 = {
+			fileRef = 717895DDB3D5218CC1607D18;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					RemoveHeadersOnCopy,
+				);
+			};
+		};
+		78A686F396A298FDBA506F32 = {
+			fileRef = 6CE995243D123B1C426CCC94;
+			isa = PBXBuildFile;
+		};
+		78ACA2F4A80E8EA7B198A1F5 = {
+			fileRef = DFD3814BEF1A2F12C1A8E0BC;
+			isa = PBXBuildFile;
+		};
+		7952F79D5FD8BFE93DAFF574 = {
+			fileRef = 4B2996326C19F90BF19584E6;
+			isa = PBXBuildFile;
+		};
+		79EB21136EC1F09FD656CEFD = {
+			buildConfigurationList = C4F8BE6255B182A3408446D6;
+			buildPhases = (
+				B7837E121A86738DBBCD8660,
+				519B07BCE69DE0BA3891E13D,
+				0FF6D56399A32A955C8E5ED3,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDAFC05AA158CF2147B6426D,
+			);
+			isa = PBXNativeTarget;
+			name = AyasTests;
+			productName = AyasTests;
+			productReference = F0F502641AE57C7599538866;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7A726891E6C409B36C323EA4 = {
+			children = (
+				1313468C6DB515F452D30263,
+				3D65EBDCA0E36D95CF8D8AB6,
+				D3BA8DDCC9BF7288CFE04BCF,
+				54465BB0427A7BA22C8A707F,
+				CC5B12BE0C21AECD67649603,
+				AA59B978CD6943A7411AB87C,
+			);
+			isa = PBXGroup;
+			path = AyasWidget;
+			sourceTree = "<group>";
+		};
+		7C5FA2642CFA62BB8CAEAA7F = {
+			buildActionMask = 2147483647;
+			files = (
+				78A686F396A298FDBA506F32,
+				FEF587C9D8962BD6C5E743D8,
+				FA29D57E99B382C4BAECD69C,
+				1E08E9C16B407EA3B0D29AC6,
+				D7DD5337F8967A1E1364E037,
+				21DD2F5527C70DF3E051DDA3,
+				E19230BF1B8057F4AEC23F94,
+				9AED1ACD3352FC495572F368,
+				E3CE063397742B59CE00FD51,
+				8906DC48C6821BBD692D5A55,
+				A87A55D7C1753C485CAE8C9E,
+				E0BB66FB99BB384670E09879,
+				1DDA8E45CD176465E13E446B,
+				6BCEE0BA21084AFF80503198,
+				568BA1EF2EC6F51CF508999C,
+				06471A4C9A5397C30A2C1004,
+				E02FD012845D16CD19112949,
+				3D922E1BB7E67DBF5F45F312,
+				A52A295C7631A58D4CFEA060,
+				ECB816B56DB1CF3ED00946E6,
+				06DAF221B31F5D73594ADC57,
+				9EF94F02BB226B7DAD5B2C70,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D95B773F2F5BC0DA4CBCA1E = {
+			fileRef = EB3D8A9D47DC6BE83D3EB147;
+			isa = PBXBuildFile;
+		};
+		7E60AD5DEEC922D73342E62D = {
+			buildActionMask = 2147483647;
+			files = (
+				DED89E519A3C1A0B10F6F4EC,
+				15C72FE4F31215581D64C606,
+				FF280773DAFA0756451531BF,
+				7952F79D5FD8BFE93DAFF574,
+				BD277C3F79BB916F6EE96D26,
+				F7429B7CEC3423B3D01DDC75,
+				1B96A32F7F11DD8D992C4C74,
+				BB5B6E87F6127D2915C7C524,
+				1841396927D5B419B21AA017,
+				36BA9D4E6F793E26830F3BAA,
+				3E5EECCD1E74A9EA3D59ABF1,
+				5533C6A6730B7611FF03F7AF,
+				D7298EDE45833561ED8BA484,
+				78ACA2F4A80E8EA7B198A1F5,
+				A103C47497EDB40F0E673116,
+				C5A92001984699756FFC5EB4,
+				239B62692AEA46C9DFCC34D4,
+				CC9D13BE0CD4DF6B1436CFF1,
+				CCFDB36413B0175AADE271BC,
+				4C3780B315179DC3B3EDC1DC,
+				A874E4AE0C8FB95BBA79E50C,
+				CC06E667347C6FA281CCAF79,
+				9AF419C47A8C4B5B0AA88D81,
+				7D95B773F2F5BC0DA4CBCA1E,
+				5696B1ECA798F5C068EAA822,
+				725968E17A9EAFD55E801466,
+				9A5B84216D60AE1154C925EA,
+				323C972190D92200701F2E7A,
+				95238D8E926BF80A15EEF55D,
+				9167B4D6C56837BED8A27FD5,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82D947927BEF97E4E8D9BA99 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DeepLink.swift;
+			sourceTree = "<group>";
+		};
+		82DDC8E3939673A212AB1781 = {
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Ayas/Ayas.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Ayas/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).Ayas";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		85DB0814168C1984B041BEF8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = StreakTests.swift;
+			sourceTree = "<group>";
+		};
+		86710D00CF12B0BA06C52867 = {
+			buildConfigurations = (
+				36FB7423B596ABFF53D53DE3,
+				40A028FA2A6B8219A7E016DC,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		8906DC48C6821BBD692D5A55 = {
+			fileRef = 271B8272485F29C900AEFB08;
+			isa = PBXBuildFile;
+		};
+		8D559BD6EA6AE164F11C5AC7 = {
+			children = (
+				193F76A7F33BD653D4DDA991,
+				717895DDB3D5218CC1607D18,
+				F0F502641AE57C7599538866,
+			);
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EB6D3266B4AA84E7314D694 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder.assetcatalog;
+			path = Assets.xcassets;
+			sourceTree = "<group>";
+		};
+		9045FB14FA0FC25FB43D2114 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AyasApp.swift;
+			sourceTree = "<group>";
+		};
+		9167B4D6C56837BED8A27FD5 = {
+			fileRef = D83CA5D613D86D02ABDCB9BD;
+			isa = PBXBuildFile;
+		};
+		95238D8E926BF80A15EEF55D = {
+			fileRef = EF484B876605B636795BA03D;
+			isa = PBXBuildFile;
+		};
+		95DC029D9AA96934EAE18F10 = {
+			children = (
+				5D37E5A0BDCB519CA8F2BC07,
+				0E19D871F5D69A60A293BFE6,
+				D2E9387397E249FB7EFB1A07,
+			);
+			isa = PBXGroup;
+			path = Store;
+			sourceTree = "<group>";
+		};
+		972FB60DD130BE1099482CF2 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A5B84216D60AE1154C925EA = {
+			fileRef = 23167EE589CBC31395919A95;
+			isa = PBXBuildFile;
+		};
+		9AED1ACD3352FC495572F368 = {
+			fileRef = CAFD1A2C276608F3E160AE44;
+			isa = PBXBuildFile;
+		};
+		9AF419C47A8C4B5B0AA88D81 = {
+			fileRef = 57081A7FB657D00053BE84AB;
+			isa = PBXBuildFile;
+		};
+		9D06569DBDE3561E1B264406 = {
+			baseConfigurationReference = 3ADCEC88C1FFF3F17FC2FF0E;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		9E396184D8C7988197F42756 = {
+			children = (
+				3A4B4A8AEC707E27C206982C,
+				D906D1250E2F68D9BF1F7AD3,
+				4B2996326C19F90BF19584E6,
+				26BF51886630E70F2497073B,
+			);
+			isa = PBXGroup;
+			path = Design;
+			sourceTree = "<group>";
+		};
+		9EF94F02BB226B7DAD5B2C70 = {
+			fileRef = CC5B12BE0C21AECD67649603;
+			isa = PBXBuildFile;
+		};
+		9FF2815AE330F97F8CBD2F1C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitPresets.swift;
+			sourceTree = "<group>";
+		};
+		A103C47497EDB40F0E673116 = {
+			fileRef = 3227B207D2412670FE7A1E61;
+			isa = PBXBuildFile;
+		};
+		A40E09E17D287933C8C9F83D = {
+			fileRef = 6BE83BA88D03605E3EFFB3D7;
+			isa = PBXBuildFile;
+		};
+		A52A295C7631A58D4CFEA060 = {
+			fileRef = 3D65EBDCA0E36D95CF8D8AB6;
+			isa = PBXBuildFile;
+		};
+		A874E4AE0C8FB95BBA79E50C = {
+			fileRef = 4E0D9FC3CD0E70F473C11605;
+			isa = PBXBuildFile;
+		};
+		A87A55D7C1753C485CAE8C9E = {
+			fileRef = 82D947927BEF97E4E8D9BA99;
+			isa = PBXBuildFile;
+		};
+		A967E8DED626F636B127B998 = {
+			buildActionMask = 2147483647;
+			files = (
+				EB50A9E837CA9C1898A8223D,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A99C1B94B3799E11AC03545A = {
+			children = (
+				DCA8818AD3B59B26A478A039,
+				23167EE589CBC31395919A95,
+				24CD5FA79A4CCBB7B6056A43,
+				EF484B876605B636795BA03D,
+			);
+			isa = PBXGroup;
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		AA59B978CD6943A7411AB87C = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = Info.plist;
+			sourceTree = "<group>";
+		};
+		AB10DF46D753B80C17861EE6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder;
+			path = Quran;
+			sourceTree = "<group>";
+		};
+		B3E6BECCCF14031F69F7B6E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = SequenceTests.swift;
+			sourceTree = "<group>";
+		};
+		B7837E121A86738DBBCD8660 = {
+			buildActionMask = 2147483647;
+			files = (
+				09F704CA27A14E44C5BC16DA,
+				A40E09E17D287933C8C9F83D,
+				27F57202BE6D7C4D11443C81,
+				DBEC7FAD62011011D81CF6C8,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA658E5ACC5A869CA8862420 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = RootView.swift;
+			sourceTree = "<group>";
+		};
+		BB5B6E87F6127D2915C7C524 = {
+			fileRef = CAFD1A2C276608F3E160AE44;
+			isa = PBXBuildFile;
+		};
+		BD277C3F79BB916F6EE96D26 = {
+			fileRef = 26BF51886630E70F2497073B;
+			isa = PBXBuildFile;
+		};
+		BE7037BF8AB10FFFA4399CDB = {
+			isa = PBXFileReference;
+			lastKnownFileType = net.daringfireball.markdown;
+			path = README.md;
+			sourceTree = "<group>";
+		};
+		C4F8BE6255B182A3408446D6 = {
+			buildConfigurations = (
+				26BC26372F21601E4B726EF9,
+				3988AB1BA2A4F63F7C97B473,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		C5A92001984699756FFC5EB4 = {
+			fileRef = 5D37E5A0BDCB519CA8F2BC07;
+			isa = PBXBuildFile;
+		};
+		C5F17E98C932A45CC7665A3D = {
+			children = (
+				53827865A9632EF3C2AE0233,
+				6BE83BA88D03605E3EFFB3D7,
+				B3E6BECCCF14031F69F7B6E5,
+				85DB0814168C1984B041BEF8,
+			);
+			isa = PBXGroup;
+			path = AyasTests;
+			sourceTree = "<group>";
+		};
+		C64F91A36BC1DFFBFBF7BCE4 = {
+			children = (
+				59C6D1142CA7251B4C005E74,
+				9E396184D8C7988197F42756,
+				14898FAEF69FC387C40123DD,
+				275B45E8DD60D98BAB532833,
+				95DC029D9AA96934EAE18F10,
+			);
+			isa = PBXGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C67E3CEDBD15453ED2AB9ED3 = {
+			buildConfigurationList = 5289033F5B139C49AE66F1DB;
+			buildPhases = (
+				7E60AD5DEEC922D73342E62D,
+				972FB60DD130BE1099482CF2,
+				3451744C1E4385F358881E68,
+				77E653804AFC8DD108374C52,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8F7EFE60100611332A625CF,
+			);
+			isa = PBXNativeTarget;
+			name = Ayas;
+			productName = Ayas;
+			productReference = 193F76A7F33BD653D4DDA991;
+			productType = "com.apple.product-type.application";
+		};
+		CAFD1A2C276608F3E160AE44 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = SelectHabitIntent.swift;
+			sourceTree = "<group>";
+		};
+		CB0B830669DF6E8174C08BC6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = WeekStrip.swift;
+			sourceTree = "<group>";
+		};
+		CC06E667347C6FA281CCAF79 = {
+			fileRef = F0ABB819EF88C7BD356FE51A;
+			isa = PBXBuildFile;
+		};
+		CC5B12BE0C21AECD67649603 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitWidgetView.swift;
+			sourceTree = "<group>";
+		};
+		CC9D13BE0CD4DF6B1436CFF1 = {
+			fileRef = D2E9387397E249FB7EFB1A07;
+			isa = PBXBuildFile;
+		};
+		CCFDB36413B0175AADE271BC = {
+			fileRef = 9045FB14FA0FC25FB43D2114;
+			isa = PBXBuildFile;
+		};
+		CDAFC05AA158CF2147B6426D = {
+			isa = PBXTargetDependency;
+			target = C67E3CEDBD15453ED2AB9ED3;
+			targetProxy = 35A52E32559A7D3DA7190539;
+		};
+		D2E9387397E249FB7EFB1A07 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitStore.swift;
+			sourceTree = "<group>";
+		};
+		D3BA8DDCC9BF7288CFE04BCF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitTimelineProvider.swift;
+			sourceTree = "<group>";
+		};
+		D4AE45994EC30D181EC5AF5C = {
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Ayas/Ayas.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Ayas/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(AYAS_BUNDLE_ID_PREFIX).Ayas";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		D50CA8D554D689B32D7BE112 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AyasDocument.swift;
+			sourceTree = "<group>";
+		};
+		D7298EDE45833561ED8BA484 = {
+			fileRef = 9FF2815AE330F97F8CBD2F1C;
+			isa = PBXBuildFile;
+		};
+		D7DD5337F8967A1E1364E037 = {
+			fileRef = 26BF51886630E70F2497073B;
+			isa = PBXBuildFile;
+		};
+		D83CA5D613D86D02ABDCB9BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Haptics.swift;
+			sourceTree = "<group>";
+		};
+		D906D1250E2F68D9BF1F7AD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Motion.swift;
+			sourceTree = "<group>";
+		};
+		DBEC7FAD62011011D81CF6C8 = {
+			fileRef = 85DB0814168C1984B041BEF8;
+			isa = PBXBuildFile;
+		};
+		DCA8818AD3B59B26A478A039 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitDetailView.swift;
+			sourceTree = "<group>";
+		};
+		DED89E519A3C1A0B10F6F4EC = {
+			fileRef = 6CE995243D123B1C426CCC94;
+			isa = PBXBuildFile;
+		};
+		DFD3814BEF1A2F12C1A8E0BC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitSequence.swift;
+			sourceTree = "<group>";
+		};
+		E02FD012845D16CD19112949 = {
+			fileRef = 0E19D871F5D69A60A293BFE6;
+			isa = PBXBuildFile;
+		};
+		E0BB66FB99BB384670E09879 = {
+			fileRef = 6589515E4EF8E97167B7E5D3;
+			isa = PBXBuildFile;
+		};
+		E19230BF1B8057F4AEC23F94 = {
+			fileRef = 732C0721869E9E0E979D551F;
+			isa = PBXBuildFile;
+		};
+		E3CE063397742B59CE00FD51 = {
+			fileRef = D50CA8D554D689B32D7BE112;
+			isa = PBXBuildFile;
+		};
+		EB3D8A9D47DC6BE83D3EB147 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = HabitRow.swift;
+			sourceTree = "<group>";
+		};
+		EB50A9E837CA9C1898A8223D = {
+			fileRef = AB10DF46D753B80C17861EE6;
+			isa = PBXBuildFile;
+		};
+		EC7995B86F59190E4BD9652D = {
+			children = (
+				225B0689379E7C9C92E1AB97,
+				A99C1B94B3799E11AC03545A,
+				42788065CF41F016AD3E5CEF,
+				8EB6D3266B4AA84E7314D694,
+				4296BEA80F42B6759468087E,
+				9045FB14FA0FC25FB43D2114,
+				63FBCDEAF513BEE4873B7270,
+				BA658E5ACC5A869CA8862420,
+			);
+			isa = PBXGroup;
+			path = Ayas;
+			sourceTree = "<group>";
+		};
+		ECB816B56DB1CF3ED00946E6 = {
+			fileRef = D3BA8DDCC9BF7288CFE04BCF;
+			isa = PBXBuildFile;
+		};
+		EF484B876605B636795BA03D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = TodayView.swift;
+			sourceTree = "<group>";
+		};
+		F0ABB819EF88C7BD356FE51A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Chrome.swift;
+			sourceTree = "<group>";
+		};
+		F0F502641AE57C7599538866 = {
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = AyasTests.xctest;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7429B7CEC3423B3D01DDC75 = {
+			fileRef = 2D19F7659D0D88014B924683;
+			isa = PBXBuildFile;
+		};
+		F8F7EFE60100611332A625CF = {
+			isa = PBXTargetDependency;
+			target = 539C7E544B3FB2D37F04A325;
+			targetProxy = 152E55DCDE457596B41AA6F2;
+		};
+		FA29D57E99B382C4BAECD69C = {
+			fileRef = D906D1250E2F68D9BF1F7AD3;
+			isa = PBXBuildFile;
+		};
+		FEF587C9D8962BD6C5E743D8 = {
+			fileRef = 3A4B4A8AEC707E27C206982C;
+			isa = PBXBuildFile;
+		};
+		FF280773DAFA0756451531BF = {
+			fileRef = D906D1250E2F68D9BF1F7AD3;
+			isa = PBXBuildFile;
+		};
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595;
+}

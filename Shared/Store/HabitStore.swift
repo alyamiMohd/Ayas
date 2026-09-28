@@ -1,0 +1,134 @@
+import Foundation
+import Observation
+import WidgetKit
+
+/// Widget kind identifiers, shared so the app can refresh timelines by name.
+enum WidgetKinds {
+    static let habit = "AyasHabitWidget"
+}
+
+/// The one place habit state is mutated.
+///
+/// Every mutation writes the document straight through to disk and asks WidgetKit to
+/// rebuild its timelines. Nothing is cached in memory across launches, so termination,
+/// a device restart, or a write from the widget all land in the same state.
+@Observable
+final class HabitStore {
+    static let shared = HabitStore()
+
+    private let storage: DocumentStorage
+    private(set) var document: AyasDocument
+    private var lastSeenModification: Date?
+
+    init(storage: DocumentStorage = .shared) {
+        self.storage = storage
+        document = storage.load()
+        lastSeenModification = storage.modificationDate
+    }
+
+    // MARK: - Reading
+
+    var habits: [Habit] { document.habits }
+    var settings: Settings { document.settings }
+    var isSharedWithWidget: Bool { storage.isShared }
+
+    func habit(id: UUID) -> Habit? {
+        document.habits.first { $0.id == id }
+    }
+
+    func today(now: Date = Date()) -> DayKey {
+        DayClock.today(dayStartHour: document.settings.dayStartHour, now: now)
+    }
+
+    /// Picks up writes made by the widget while the app was away. Cheap enough to call on
+    /// every foreground and before every mutation.
+    func refreshFromDisk() {
+        let stamp = storage.modificationDate
+        guard stamp != lastSeenModification else { return }
+        document = storage.load()
+        lastSeenModification = stamp
+    }
+
+    // MARK: - Habits
+
+    func add(_ habit: Habit) {
+        refreshFromDisk()
+        document.habits.append(habit)
+        commit()
+    }
+
+    func update(_ habit: Habit) {
+        refreshFromDisk()
+        guard let index = document.habits.firstIndex(where: { $0.id == habit.id }) else { return }
+        document.habits[index] = habit
+        commit()
+    }
+
+    func delete(id: UUID) {
+        refreshFromDisk()
+        document.habits.removeAll { $0.id == id }
+        commit()
+    }
+
+    // MARK: - Completion
+
+    /// Returns true when this call actually changed something, so callers can decide
+    /// whether to celebrate. A second tap on an already-complete day returns false.
+    @discardableResult
+    func complete(id: UUID, on day: DayKey? = nil) -> Bool {
+        refreshFromDisk()
+        guard let index = document.habits.firstIndex(where: { $0.id == id }) else { return false }
+        let target = day ?? today()
+        let changed = document.habits[index].markComplete(on: target)
+        if changed { commit() }
+        return changed
+    }
+
+    @discardableResult
+    func clear(id: UUID, on day: DayKey? = nil) -> Bool {
+        refreshFromDisk()
+        guard let index = document.habits.firstIndex(where: { $0.id == id }) else { return false }
+        let target = day ?? today()
+        let changed = document.habits[index].clearCompletion(on: target)
+        if changed { commit() }
+        return changed
+    }
+
+    /// Returns the state the habit ended up in.
+    @discardableResult
+    func toggle(id: UUID, on day: DayKey? = nil) -> Bool {
+        refreshFromDisk()
+        guard let habit = habit(id: id) else { return false }
+        let target = day ?? today()
+        if habit.isComplete(on: target) {
+            clear(id: id, on: target)
+            return false
+        } else {
+            complete(id: id, on: target)
+            return true
+        }
+    }
+
+    // MARK: - Settings
+
+    func updateSettings(_ transform: (inout Settings) -> Void) {
+        refreshFromDisk()
+        transform(&document.settings)
+        commit()
+    }
+
+    func eraseEverything() {
+        document = AyasDocument()
+        storage.save(document)
+        lastSeenModification = storage.modificationDate
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    // MARK: - Commit
+
+    private func commit() {
+        storage.save(document)
+        lastSeenModification = storage.modificationDate
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetKinds.habit)
+    }
+}

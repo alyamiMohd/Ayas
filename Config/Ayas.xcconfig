@@ -1,0 +1,14 @@
+// The only file you need to edit to build this on your own account.
+//
+// 1. AYAS_BUNDLE_ID_PREFIX — change to something you own, e.g. com.yourname
+// 2. AYAS_APP_GROUP — must start with "group." and match an App Group you create in
+//    Xcode (Signing & Capabilities → App Groups) for BOTH the app and the widget target.
+//
+// Everything else — the two Info.plists, both entitlements files, and the runtime lookup
+// in AppGroup.swift — reads these values, so there is nothing else to keep in sync.
+
+AYAS_BUNDLE_ID_PREFIX = com.ayas
+AYAS_APP_GROUP = group.com.ayas.shared
+
+MARKETING_VERSION = 1.0
+CURRENT_PROJECT_VERSION = 1
