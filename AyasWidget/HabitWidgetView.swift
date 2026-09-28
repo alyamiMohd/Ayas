@@ -4,10 +4,24 @@ import WidgetKit
 
 /// The widget face. It has to answer four things at a glance: which habit, what today's step
 /// is, how long the run is, and whether it is done.
+///
+/// Completion turns the entire face green — one green for every habit, regardless of the
+/// habit's own accent. That is the reward: from arm's length you can tell today is done
+/// without reading a word.
 struct HabitWidgetView: View {
     var entry: HabitEntry
 
     @Environment(\.widgetFamily) private var family
+
+    private var isDone: Bool { entry.habit?.isComplete ?? false }
+
+    // One switch drives every colour on the face.
+    private var inkSoft: Color { isDone ? Palette.onDoneSoft : Palette.inkSoft }
+    private var inkFaint: Color { isDone ? Palette.onDoneFaint : Palette.inkFaint }
+
+    private func accentInk(_ snapshot: HabitSnapshot) -> Color {
+        isDone ? Palette.onDone : snapshot.accent.color
+    }
 
     var body: some View {
         Group {
@@ -44,10 +58,10 @@ struct HabitWidgetView: View {
         HStack(alignment: .center, spacing: 5) {
             Image(systemName: snapshot.glyph.symbolName)
                 .font(.system(size: 10, weight: .medium))
-                .foregroundStyle(snapshot.accent.color)
+                .foregroundStyle(accentInk(snapshot))
 
             Text(snapshot.name)
-                .eyebrow(size: 10, color: Palette.inkSoft)
+                .eyebrow(size: 10, color: inkSoft)
                 .lineLimit(1)
 
             Spacer(minLength: 4)
@@ -66,14 +80,14 @@ struct HabitWidgetView: View {
                     text: body,
                     size: metrics.arabicSize,
                     lineLimit: metrics.arabicLines,
-                    color: snapshot.isComplete ? Palette.inkSoft : Palette.ink
+                    color: isDone ? Palette.onDoneSoft : Palette.ink
                 )
 
                 if metrics.allowsTranslation, let translation = snapshot.item?.translation {
                     Text(translation)
                         .font(.system(size: 11, weight: .regular, design: .serif))
                         .italic()
-                        .foregroundStyle(Palette.inkFaint)
+                        .foregroundStyle(inkFaint)
                         .lineLimit(2)
                         .minimumScaleFactor(0.85)
                         .multilineTextAlignment(.leading)
@@ -83,7 +97,7 @@ struct HabitWidgetView: View {
             // Habits without ordered content lead with the action itself.
             Text(snapshot.action)
                 .font(.system(size: metrics.actionSize, weight: .regular, design: .serif))
-                .foregroundStyle(snapshot.isComplete ? Palette.inkSoft : Palette.ink)
+                .foregroundStyle(isDone ? Palette.onDoneSoft : Palette.ink)
                 .lineLimit(3)
                 .minimumScaleFactor(0.8)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -96,7 +110,7 @@ struct HabitWidgetView: View {
                 if snapshot.isComplete {
                     Text("Completed today")
                         .font(.system(size: 11, weight: .medium))
-                        .foregroundStyle(snapshot.accent.color)
+                        .foregroundStyle(Palette.onDone)
                         .lineLimit(1)
                 } else if let reference = snapshot.item?.reference {
                     Text(reference)
@@ -123,7 +137,7 @@ struct HabitWidgetView: View {
     private func streak(_ snapshot: HabitSnapshot) -> some View {
         Text(snapshot.streakLabel)
             .font(.system(size: 10, weight: snapshot.isComplete ? .medium : .regular))
-            .foregroundStyle(snapshot.isComplete ? snapshot.accent.color : Palette.inkFaint)
+            .foregroundStyle(snapshot.isComplete ? Palette.onDone : Palette.inkFaint)
             .lineLimit(1)
     }
 
@@ -132,7 +146,12 @@ struct HabitWidgetView: View {
     @ViewBuilder
     private func control(_ snapshot: HabitSnapshot, metrics: Metrics) -> some View {
         if snapshot.isComplete {
-            CompletionMark(isComplete: true, accent: snapshot.accent, size: metrics.markSize)
+            CompletionMark(
+                isComplete: true,
+                accent: snapshot.accent,
+                size: metrics.markSize,
+                palette: .onDoneGround
+            )
         } else {
             Button(
                 intent: CompleteHabitIntent(
@@ -180,10 +199,9 @@ struct HabitWidgetView: View {
 
     @ViewBuilder
     private var background: some View {
-        if let snapshot = entry.habit, snapshot.isComplete {
-            // Completion warms the whole face — the reward is the widget itself changing.
+        if isDone {
             LinearGradient(
-                colors: [snapshot.accent.wash, Palette.surface],
+                colors: [Palette.doneGround, Palette.doneGroundEdge],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

@@ -5,28 +5,50 @@ import SwiftUI
 /// Shared between the app and the widget so completing a habit looks identical wherever it
 /// happens. The satisfaction is meant to come from the fill and the stroke of the check —
 /// no confetti, no badges.
+/// The three colours a mark is drawn from. Overridable so the mark still reads when it
+/// sits on a filled ground rather than the page.
+struct MarkPalette: Equatable {
+    var ring: Color
+    var fill: Color
+    var check: Color
+
+    static func standard(_ accent: AccentKey) -> MarkPalette {
+        MarkPalette(ring: Palette.lineStrong, fill: accent.color, check: Palette.onAccent)
+    }
+
+    /// For a mark on the completed widget's green face.
+    static let onDoneGround = MarkPalette(
+        ring: Palette.onDoneFaint,
+        fill: Palette.onDone,
+        check: Palette.doneGround
+    )
+}
+
 struct CompletionMark: View {
     var isComplete: Bool
     var accent: AccentKey
     var size: CGFloat = 30
+    /// Set when the mark sits on a filled ground and needs its own colours.
+    var palette: MarkPalette?
 
+    private var colors: MarkPalette { palette ?? .standard(accent) }
     private var strokeWidth: CGFloat { max(1.2, size * 0.055) }
 
     var body: some View {
         ZStack {
             Circle()
-                .strokeBorder(Palette.lineStrong, lineWidth: strokeWidth)
+                .strokeBorder(colors.ring, lineWidth: strokeWidth)
                 .opacity(isComplete ? 0 : 1)
 
             Circle()
-                .fill(accent.color)
+                .fill(colors.fill)
                 .scaleEffect(isComplete ? 1 : 0.35)
                 .opacity(isComplete ? 1 : 0)
 
             CheckPath()
                 .trim(from: 0, to: isComplete ? 1 : 0)
                 .stroke(
-                    Palette.onAccent,
+                    colors.check,
                     style: StrokeStyle(lineWidth: size * 0.1, lineCap: .round, lineJoin: .round)
                 )
                 .frame(width: size * 0.40, height: size * 0.30)

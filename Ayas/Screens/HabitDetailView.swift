@@ -9,6 +9,9 @@ struct HabitDetailView: View {
 
     @Environment(HabitStore.self) private var store
 
+    /// Rendered off-screen so the share sheet opens with the card already in hand.
+    @State private var shareImage: Image?
+
     private var habit: Habit? { store.habit(id: habitID) }
     private var today: DayKey { store.today() }
 
@@ -32,9 +35,10 @@ struct HabitDetailView: View {
 
         return ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
+                HStack(spacing: Space.snug) {
                     CircleControl(symbol: "chevron.left", action: onBack)
-                    Spacer()
+                    Spacer(minLength: Space.snug)
+                    shareControl(for: habit, snapshot: snapshot)
                     CircleControl(symbol: "pencil", action: onEdit)
                 }
                 .padding(.top, Space.regular)
@@ -72,6 +76,29 @@ struct HabitDetailView: View {
             .padding(.horizontal, Space.gutter)
         }
         .scrollIndicators(.hidden)
+        .task(id: shareKey(snapshot)) {
+            shareImage = await MainActor.run { ShareCardRenderer.image(for: habit, on: today) }
+        }
+    }
+
+    /// Regenerates the card whenever anything on it would have changed.
+    private func shareKey(_ snapshot: HabitSnapshot) -> String {
+        "\(snapshot.id)|\(snapshot.streak)|\(snapshot.isComplete)|\(today.rawValue)"
+    }
+
+    @ViewBuilder
+    private func shareControl(for habit: Habit, snapshot: HabitSnapshot) -> some View {
+        if let shareImage {
+            ShareLink(
+                item: shareImage,
+                subject: Text(snapshot.name),
+                message: Text(ShareCardRenderer.message(for: habit, on: today)),
+                preview: SharePreview(snapshot.name, image: shareImage)
+            ) {
+                CircleControlFace(symbol: "square.and.arrow.up")
+            }
+            .buttonStyle(PressableStyle())
+        }
     }
 
     private func continuity(for habit: Habit, snapshot: HabitSnapshot) -> some View {

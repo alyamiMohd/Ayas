@@ -21,6 +21,8 @@ Requires iOS 17 and Xcode 15 or later.
   best streak, total days, and a fourteen-day strip.
 - Settings: appearance, when a new day begins, translation, haptics, erase.
 - Empty state that offers the Quran habit in one tap.
+- Share any habit as a rendered card — streak, the last two weeks, today's reference —
+  to messages or social media.
 - Light and dark mode, both drawn deliberately rather than inverted.
 
 **Widget**
@@ -29,6 +31,7 @@ Requires iOS 17 and Xcode 15 or later.
 - Shows the habit, today's ayah in Arabic (plus translation on medium), the streak, and
   whether it is done.
 - One tap on the ring completes the habit in place, without opening the app.
+- Completion turns the entire face green, so a finished day reads from arm's length.
 - Advances to the next day on its own, including clearing the completion and recomputing
   the streak, with no help from the app.
 - Each widget is configured with its own habit, so several habits can sit side by side.
@@ -94,8 +97,27 @@ will stand on that day. WidgetKit swaps entries as each boundary passes, so the 
 correct tomorrow morning whether or not you have opened the app, and a streak that breaks
 over a missed weekend visibly breaks on its own.
 
+**The green.** Completing turns the whole widget green — background, text and mark — rather
+than tinting it with the habit's own accent. Every habit completes in the same green on
+purpose: at Home Screen size the question is only "is today done", and one colour answers it
+without being read. Inside the app, habits keep their individual accents, where there is room
+to tell them apart.
+
 Timelines are also refreshed whenever the app writes anything, and when the system reports
 a significant time change (midnight, a timezone move).
+
+---
+
+## 3b. Sharing
+
+The share control sits in the habit detail header. It renders a square card off-screen with
+`ImageRenderer` — habit, streak, the last fourteen days, and today's reference — and hands it
+to the system share sheet, so it goes anywhere the phone can send an image: Messages,
+WhatsApp, Instagram, anywhere.
+
+The card is rendered in light mode regardless of the app's appearance, so it looks the same
+to everyone who receives it, and it regenerates whenever the streak or completion changes.
+Nothing leaves the device unless you tap share.
 
 ---
 
@@ -225,6 +247,7 @@ python3 Tools/generate_xcodeproj.py
   expect to fix a small number of compile errors on first build.
 - **Daily only.** No weekly or n-times-a-week rhythms; the editor says so plainly.
 - **Today only.** You can complete or undo today, but not backfill a day you forgot.
+- **Sharing is per habit, from its detail screen.** There is no "share everything" card.
 - **Two widget sizes.** Small and medium. Lock Screen accessory families are not included;
   `Metrics` in `HabitWidgetView` is where a new family would be added.
 - **Widget interaction is one-way.** Completing from the widget cannot be undone there.

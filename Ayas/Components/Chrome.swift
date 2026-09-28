@@ -46,6 +46,21 @@ struct Hairline: View {
     }
 }
 
+/// The look of a small circular control, without the button behaviour — so a ShareLink can
+/// wear the same face as the rest of them.
+struct CircleControlFace: View {
+    var symbol: String
+
+    var body: some View {
+        Image(systemName: symbol)
+            .font(.system(size: 13, weight: .semibold))
+            .foregroundStyle(Palette.inkSoft)
+            .frame(width: 34, height: 34)
+            .background(Circle().fill(Palette.canvasLow))
+            .overlay(Circle().strokeBorder(Palette.line, lineWidth: 0.75))
+    }
+}
+
 /// A small circular control — settings, back, dismiss. Reads as a mark, not a chrome button.
 struct CircleControl: View {
     var symbol: String
@@ -53,12 +68,7 @@ struct CircleControl: View {
 
     var body: some View {
         Button(action: action) {
-            Image(systemName: symbol)
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Palette.inkSoft)
-                .frame(width: 34, height: 34)
-                .background(Circle().fill(Palette.canvasLow))
-                .overlay(Circle().strokeBorder(Palette.line, lineWidth: 0.75))
+            CircleControlFace(symbol: symbol)
         }
         .buttonStyle(PressableStyle())
     }

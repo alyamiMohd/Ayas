@@ -23,6 +23,17 @@ enum Palette {
 
     /// Sits on top of a filled accent — the checkmark, mostly.
     static let onAccent = Color(light: 0xFFFDFA, dark: 0x17140F)
+
+    /// The completed widget's ground.
+    ///
+    /// One green for every habit, whatever its own accent: done is done, and the whole
+    /// face turning is what makes it readable from across the room.
+    static let doneGround = Color(light: 0x4C7A4F, dark: 0x2B5136)
+    static let doneGroundEdge = Color(light: 0x3E6742, dark: 0x1D3826)
+
+    static let onDone = Color(light: 0xF5F9F2, dark: 0xE2EFDE)
+    static let onDoneSoft = Color(light: 0xDCE9D7, dark: 0xB6CFB1)
+    static let onDoneFaint = Color(light: 0xC0D6BC, dark: 0x9BB899)
 }
 
 extension AccentKey {
