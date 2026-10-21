@@ -1,0 +1,116 @@
+name: iOS
+
+# The build job is expected to FAIL until the first compile errors are fixed on a Mac.
+# See docs/KNOWN_ISSUES.md B1. Its first green run is the moment that blocker closes.
+#
+# No Apple credentials are needed: simulator builds pass CODE_SIGNING_ALLOWED=NO.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  project:
+    name: Project file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Project file matches the file tree
+        # Generation is deterministic, so a diff here means someone added or removed a
+        # source file without running the generator.
+        run: |
+          python3 Tools/generate_xcodeproj.py
+          git diff --exit-code Ayas.xcodeproj/project.pbxproj \
+            || { echo "::error::Run python3 Tools/generate_xcodeproj.py and commit the result"; exit 1; }
+
+      - name: Validate the generated project
+        run: python3 Tools/verify_project.py
+
+      - name: Quran data integrity
+        # Offsets are byte positions. A line-ending translation would shift every one of
+        # them and the app would render torn ayahs.
+        run: |
+          python3 - <<'CHECK'
+          import io, json, struct, sys
+
+          base = "Shared/Content/Quran/"
+          meta = json.load(io.open(base + "surahs.json", encoding="utf-8"))
+          assert len(meta) == 114, "expected 114 surahs, got %d" % len(meta)
+          total = sum(s["ayahCount"] for s in meta)
+          assert total == 6236, "expected 6236 ayahs, got %d" % total
+
+          for slug in ("ar.uthmani", "en.sahih"):
+              raw = io.open(base + slug + ".idx", "rb").read()
+              offsets = struct.unpack("<%dI" % (len(raw) // 4), raw)
+              assert len(offsets) == 6237, "%s: %d offsets" % (slug, len(offsets))
+
+              data = io.open(base + slug + ".txt", "rb").read()
+              assert b"\r" not in data, "%s: carriage return found — line endings were translated" % slug
+              assert offsets[-1] == len(data), (
+                  "%s: index says %d bytes, file is %d — regenerate both together"
+                  % (slug, offsets[-1], len(data))
+              )
+              # Spot-check that records decode and carry no newline.
+              for index in (0, 7, 261, 3000, 6235):
+                  start, end = offsets[index], offsets[index + 1] - 1
+                  record = data[start:end].decode("utf-8")
+                  assert record and "\n" not in record, "%s: bad record %d" % (slug, index)
+
+          print("Quran data OK: 114 surahs, 6236 ayahs, offsets aligned")
+          CHECK
+
+  build:
+    name: Build and test
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Pick an available iPhone simulator
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available --json | python3 -c "
+          import json, sys
+          runtimes = json.load(sys.stdin)['devices']
+          for runtime in sorted(runtimes, reverse=True):
+              if 'iOS' not in runtime:
+                  continue
+              for device in runtimes[runtime]:
+                  if device.get('isAvailable') and 'iPhone' in device['name']:
+                      print(device['udid'])
+                      sys.exit()
+          sys.exit('no available iPhone simulator')
+          ")
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          xcrun simctl list devices available | grep -m1 "$UDID" || true
+
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild -project Ayas.xcodeproj -scheme Ayas \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Test
+        run: |
+          set -o pipefail
+          xcodebuild -project Ayas.xcodeproj -scheme Ayas \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            test
