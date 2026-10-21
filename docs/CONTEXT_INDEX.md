@@ -30,6 +30,7 @@ say so rather than guessing.
 | What is needed to ship? | [IOS_RELEASE.md](IOS_RELEASE.md) |
 | What is the state of the handover? | [HANDOVER.md](HANDOVER.md) |
 | What rules must I follow while working? | [../CLAUDE.md](../CLAUDE.md) |
+| Who owns the bundled Quran text? | [../NOTICE.md](../NOTICE.md) |
 
 ## By code area
 

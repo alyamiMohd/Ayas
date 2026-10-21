@@ -100,11 +100,19 @@ More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/WIDGETS.md](docs/WID
 
 ---
 
-## ⚠️ Before any public release
+## ⚠️ Bundled Quran text — attribution and open questions
 
-The bundled Quran text has an **unresolved licensing question** that blocks App Store
-release. Fine for personal use; not settled for distribution. Read
-[docs/QURAN_CONTENT.md](docs/QURAN_CONTENT.md) before investing in store assets.
+The Arabic text comes from the **[Tanzil Project](https://tanzil.net)**; the English
+translation is **Saheeh International**, which is copyrighted by its publisher.
+
+This repository **modifies** the Tanzil text (it strips the basmalah prefix from surah
+openings and re-encodes it), which their terms as published do not permit, and redistributes
+the translation without having sought permission. Both questions are **unresolved** and block
+App Store release.
+
+Read **[NOTICE.md](NOTICE.md)** for the full attribution, and
+[docs/QURAN_CONTENT.md](docs/QURAN_CONTENT.md) for the options. This repository is not an
+authoritative source of Quranic text.
 
 ---
 
