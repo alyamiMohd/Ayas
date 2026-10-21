@@ -19,13 +19,22 @@ extension HabitSequence: Codable {
         case kind, start, unit
     }
 
+    /// `plain` rather than `none` so the case never collides with `Optional.none` when this
+    /// is matched through an optional — that collision silently stops the enum's own case
+    /// from ever matching.
     private enum Kind: String, Codable {
-        case none, quran, numbered
+        case plain = "none"
+        case quran
+        case numbered
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let kind = try container.decodeIfPresent(Kind.self, forKey: .kind)
+        // Decoded as a string on purpose: `decodeIfPresent(Kind.self)` throws on an
+        // unrecognised raw value, which would lose the whole habit. A missing or unknown
+        // kind degrades to a plain daily habit instead.
+        let raw = try container.decodeIfPresent(String.self, forKey: .kind)
+        let kind = raw.flatMap(Kind.init(rawValue:)) ?? .plain
         switch kind {
         case .quran:
             let start = try container.decodeIfPresent(Int.self, forKey: .start) ?? 1
@@ -34,9 +43,7 @@ extension HabitSequence: Codable {
             let unit = try container.decodeIfPresent(String.self, forKey: .unit) ?? "Step"
             let start = try container.decodeIfPresent(Int.self, forKey: .start) ?? 1
             self = .numbered(unit: unit, start: start)
-        case .none, nil:
-            // An unknown kind from a newer build degrades to a plain daily habit rather
-            // than failing the whole document.
+        case .plain:
             self = .none
         }
     }
@@ -45,7 +52,7 @@ extension HabitSequence: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
         case .none:
-            try container.encode(Kind.none, forKey: .kind)
+            try container.encode(Kind.plain, forKey: .kind)
         case .quran(let start):
             try container.encode(Kind.quran, forKey: .kind)
             try container.encode(start, forKey: .start)
