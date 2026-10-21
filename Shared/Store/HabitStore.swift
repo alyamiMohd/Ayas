@@ -18,12 +18,10 @@ final class HabitStore {
 
     private let storage: DocumentStorage
     private(set) var document: AyasDocument
-    private var lastSeenModification: Date?
 
     init(storage: DocumentStorage = .shared) {
         self.storage = storage
         document = storage.load()
-        lastSeenModification = storage.modificationDate
     }
 
     // MARK: - Reading
@@ -40,13 +38,17 @@ final class HabitStore {
         DayClock.today(dayStartHour: document.settings.dayStartHour, now: now)
     }
 
-    /// Picks up writes made by the widget while the app was away. Cheap enough to call on
-    /// every foreground and before every mutation.
+    /// Picks up writes made by the widget while the app was away. Called on every
+    /// foreground and before every mutation.
+    ///
+    /// Reads the file every time rather than comparing modification dates: two writes can
+    /// land inside the same timestamp granularity, and a missed refresh means the app
+    /// silently clobbers whatever the widget just recorded. The document is a few kilobytes,
+    /// so the read costs nothing. Assigning only on a real change keeps observation quiet.
     func refreshFromDisk() {
-        let stamp = storage.modificationDate
-        guard stamp != lastSeenModification else { return }
-        document = storage.load()
-        lastSeenModification = stamp
+        let loaded = storage.load()
+        guard loaded != document else { return }
+        document = loaded
     }
 
     // MARK: - Habits
@@ -120,7 +122,6 @@ final class HabitStore {
     func eraseEverything() {
         document = AyasDocument()
         storage.save(document)
-        lastSeenModification = storage.modificationDate
         WidgetCenter.shared.reloadAllTimelines()
     }
 
@@ -128,7 +129,6 @@ final class HabitStore {
 
     private func commit() {
         storage.save(document)
-        lastSeenModification = storage.modificationDate
         WidgetCenter.shared.reloadTimelines(ofKind: WidgetKinds.habit)
     }
 }

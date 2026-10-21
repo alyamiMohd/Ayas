@@ -75,11 +75,6 @@ struct DocumentStorage: Sendable {
         }
     }
 
-    var modificationDate: Date? {
-        let values = try? fileURL.resourceValues(forKeys: [.contentModificationDateKey])
-        return values?.contentModificationDate
-    }
-
     var exists: Bool {
         FileManager.default.fileExists(atPath: fileURL.path)
     }
