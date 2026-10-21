@@ -9,13 +9,14 @@ Status vocabulary matches [FEATURE_INVENTORY.md](FEATURE_INVENTORY.md).
 
 ## Tier 0 — Make it real
 
-Nothing else matters until these are done.
+Nothing else matters until these are done. The build and tests are green on CI; what remains
+is everything that needs the app actually running.
 
 | # | Work | Why | Est. |
 | --- | --- | --- | --- |
-| 0.1 | **Get it to compile** | [B1](KNOWN_ISSUES.md#b1). Every other claim in this repo depends on it | Hours |
-| 0.2 | **Run the unit tests** | Validates streaks, day boundaries and the bundled scripture | Minutes after 0.1 |
-| 0.3 | **Run in the simulator, add a widget** | First proof the core loop exists | ~1 hour |
+| ~~0.1~~ | ~~Get it to compile~~ | ✅ Done 21 Oct 2026. One compile error in 39 files | — |
+| ~~0.2~~ | ~~Run the unit tests~~ | ✅ Done. 42 / 42 green, and they found a real data-loss bug | — |
+| 0.3 | **Run in the simulator, add a widget** | **Start here.** First proof the core loop exists | ~1 hour |
 | 0.4 | **Walk the verification checklist** | [MAC_SETUP.md](MAC_SETUP.md#verification-checklist) | ~1 hour |
 | 0.5 | **Update docs with what is actually true** | Convert `WRITTEN` to verified; record real failures | Ongoing |
 | 0.6 | **Take screenshots, add to README** | [L3](KNOWN_ISSUES.md#l3) | ~30 min |

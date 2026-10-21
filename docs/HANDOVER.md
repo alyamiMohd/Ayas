@@ -6,13 +6,15 @@ Read this, then [CLAUDE.md](../CLAUDE.md), then start at
 
 ## Where the project stands, honestly
 
-**Ayas is a complete iOS MVP in source form that has never been compiled.**
+**Ayas is a complete iOS MVP that compiles and passes its tests, but has never been run.**
 
 ~4,100 lines of Swift across 39 files, three Xcode targets, the full Quran bundled locally,
-unit tests, and a generated-and-validated project file. Also: zero evidence that any of it
-runs, because it was written on Windows where no Swift or iOS toolchain exists.
+and a generated-and-validated project file. As of 21 October 2026 it builds cleanly on a
+macOS runner and all 42 unit tests pass, on every push.
 
-That is the whole situation. Everything below follows from it.
+What has never happened is the app running. CI compiles and tests; it does not launch a
+simulator, render a view, or place a widget. So the logic is evidenced and the experience is
+not. Everything below follows from that split.
 
 | | |
 | --- | --- |
@@ -20,8 +22,9 @@ That is the whole situation. Everything below follows from it.
 | Dependencies | **None.** No SPM, CocoaPods or Carthage |
 | Targets | `Ayas` (app), `AyasWidgetExtension` (widget), `AyasTests` (unit tests) |
 | Repository | `alyamiMohd/Ayas`, private, branch `main` |
-| Build status | **Never attempted.** See [B1](KNOWN_ISSUES.md#b1) |
-| Test status | **Never executed.** 4 test files exist |
+| Build status | ✅ Passing — Xcode 15.4, iOS 17.5 SDK, every push |
+| Test status | ✅ 42 / 42 passing across 4 suites |
+| Runtime status | ❌ **Never launched.** See [B1](KNOWN_ISSUES.md#b1) |
 | Release status | Nothing published. No Apple account enrolled |
 
 ### What is written
@@ -36,9 +39,11 @@ Itemised with file references in [FEATURE_INVENTORY.md](FEATURE_INVENTORY.md).
 
 ### What is not
 
-No screenshots, because nothing has rendered. No verified behaviour of any kind. An
-unresolved licence on the bundled translation that blocks public release. Accessibility only
-partially addressed. Full list in [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
+No screenshots, because nothing has rendered. No verified *behaviour* — the unit tests cover
+day boundaries, streaks, the Quran dataset and persistence, but nothing covers a view, a
+gesture or a widget timeline. An unresolved licence on the bundled translation that blocks
+public release. Accessibility only partially addressed. Full list in
+[KNOWN_ISSUES.md](KNOWN_ISSUES.md).
 
 ## The first three hours
 
@@ -46,12 +51,13 @@ In this order. Do not skip ahead — the rest of the project is unverifiable unt
 
 1. **Set up and clone** — [MAC_SETUP.md](MAC_SETUP.md) sections 1–3. Confirm
    `python3 Tools/verify_project.py` passes before opening Xcode.
-2. **Attempt a build.** It will fail; that is expected and is the single most valuable thing
-   you can do to this project. The likely error classes are listed in
-   [B1](KNOWN_ISSUES.md#b1).
-3. **Run the tests** (⌘U). `SequenceTests` validates the bundled scripture, which is the
-   content least safe to get wrong.
-4. **Run in the simulator and add a widget** — [MAC_SETUP.md](MAC_SETUP.md#widget-verification).
+2. **Build and test** (⌘U, or the commands in [CLAUDE.md](../CLAUDE.md)). These pass on CI,
+   so a failure here means something about your environment differs — worth knowing early.
+3. **Launch it in the simulator.** This is the first thing nobody has ever done. Create a
+   habit, complete it, quit and relaunch.
+4. **Add the widget and walk the checklist** —
+   [MAC_SETUP.md](MAC_SETUP.md#widget-verification). Pay closest attention to Arabic
+   rendering and to completing from the widget without the app launching.
 5. **Update the docs** with what actually happened. Convert `WRITTEN` entries, record real
    failures. A stale doc is worse than none, because the next session will trust it.
 
@@ -69,15 +75,16 @@ These are load-bearing. Each has a reason recorded in [DECISIONS.md](DECISIONS.m
   completion history on read. The widget's ability to render a future day correctly depends
   on that being a pure function.
 - **Do not hardcode the bundle ID or app group.** `Config/Ayas.xcconfig` is the only place.
-- **Do not report a build or test as passing without running it.** The previous author could
-  not, and said so everywhere. Keep that standard.
+- **Do not report behaviour as working without running it.** Building and unit tests are
+  evidenced by CI. Everything about the running app is not. Keep that line sharp.
 
 ## What the previous author could not do
 
-Everything that requires macOS: compile, run, test, screenshot, profile, use Instruments,
-check Arabic rendering, verify the widget, touch a real device.
+Everything that requires macOS. CI has since closed the build and unit-test half of that.
+What remains undone is everything needing a running app: launching it, rendering Arabic,
+seeing the widget, watching a day roll over, profiling, a real device.
 
-So the balance of value is unusual. Right now a single real build result is worth more to
+So the balance of value is unusual. Right now half an hour in a simulator is worth more to
 this project than a week of new features.
 
 ## Decisions you may want to revisit

@@ -8,28 +8,28 @@ Classified by severity. Severity means *blocks handover progress*, not *is embar
 
 <a id="b1"></a>
 
-### B1 — The codebase has never been compiled
+### B1 — The app has never been launched
 
-**Impact:** nothing in this repository is verified. Every feature in
-[FEATURE_INVENTORY.md](FEATURE_INVENTORY.md) is a claim, not a guarantee.
+**Impact:** no runtime behaviour is verified. The app compiles and its unit tests pass, but
+nothing has ever drawn a pixel.
 
-**Cause:** authored on Windows, where no Swift or iOS toolchain exists. The project file is
-generated and structurally validated; the logic has unit tests; none of it has met a
-compiler.
+CI builds both targets and runs 42 unit tests on every push. It does **not** launch the app,
+render a view, serve a widget timeline, or exercise a gesture. So what is currently evidenced
+is: day-boundary maths, streak logic, the Quran dataset, and persistence. What is not
+evidenced is everything a user would actually see.
 
-**Expect:** a batch of compile errors on the first build. Most likely candidates, in order:
+Specifically unverified:
 
-1. SwiftUI API signature drift — modifier argument labels, `onChange` arity, `ShareLink`
-   initialiser shapes.
-2. `ImageRenderer` / `MainActor` isolation in `HabitDetailView.task(id:)`.
-3. App Intents conformance details — `TypeDisplayRepresentation`, `EntityQuery` requirements.
-4. `@Observable` + `@Environment(HabitStore.self)` wiring.
-5. Ambiguity between the `eyebrow` property and the `.eyebrow()` view modifier in
-   `ScreenHeader`.
+1. Any SwiftUI view rendering at all — layout, truncation, overflow.
+2. Arabic text layout ([M2](#m2)), which is the likeliest place for a visible bug.
+3. The widget appearing, refreshing, or completing in place.
+4. `ImageRenderer` producing a usable share card.
+5. Navigation, sheets, deep links from the widget.
+6. Whether the App Group container resolves on a real device ([H2](#h2)).
 
-**Remediation:** on a Mac, `xcodebuild … build` (command in [CLAUDE.md](../CLAUDE.md)), fix
-top-down, re-run. Then `… test`. Then update this entry and
-[FEATURE_INVENTORY.md](FEATURE_INVENTORY.md). This is the first job and nothing else should
+**Remediation:** launch it in a simulator and walk
+[MAC_SETUP.md](MAC_SETUP.md#widget-verification). Perhaps an hour of work, and it converts
+most of [FEATURE_INVENTORY.md](FEATURE_INVENTORY.md) from claim to fact. Nothing else should
 start before it.
 
 ---
@@ -150,9 +150,39 @@ The project file is generated. Use `Tools/generate_xcodeproj.py` instead. See
 Only the widget turns green. In the app, completion uses each habit's own accent. Consistent
 with [D9](DECISIONS.md#d9), but an obvious thing to want unified.
 
-<a id="l6"></a>
+---
 
-### L6 — CI will be red until the first build is fixed
+## Resolved
 
-`.github/workflows/ios.yml` runs a real simulator build. It is expected to fail initially —
-that is the point. Its first green run is the moment B1 closes.
+Kept as a record of what was wrong and how it surfaced.
+
+### R1 — The codebase had never been compiled *(closed 21 Oct 2026)*
+
+Authored on Windows with no Swift toolchain. The first CI run on a macOS runner found
+**exactly one** compile error across 39 files, and two commits closed it.
+
+### R2 — `HabitSequence.Kind.none` could never match *(fixed 21 Oct 2026)*
+
+`Kind` had a case named `none`, matched through an `Optional<Kind>`. Swift resolves `.none`
+there to `Optional.none`, so the enum's own case was unreachable and the switch was not
+exhaustive — the one compile error in the codebase. Renamed to `plain`, keeping the raw value
+`"none"` so stored documents were unaffected.
+
+### R3 — An unknown sequence kind destroyed the habit *(fixed 21 Oct 2026)*
+
+Found while fixing R2. `decodeIfPresent(Kind.self)` **throws** on an unrecognised raw value
+rather than returning nil, so a sequence kind written by a newer build would have failed the
+habit's decode, then the document's, and the whole file would have been quarantined as
+unreadable. Now decoded as a string and mapped leniently, which is what the comment beside it
+had always claimed.
+
+### R4 — A refresh could silently miss a cross-process write *(fixed 21 Oct 2026)*
+
+Caught by `PersistenceTests.testStorePicksUpAWriteFromAnotherProcess` on its first ever run.
+`HabitStore.refreshFromDisk()` skipped reloading when the file's modification date matched
+the one it last saw, so two writes inside the same timestamp granularity looked like none.
+
+The production consequence was worse than the red test: the app would keep a stale document
+and the next mutation would clobber whatever the widget had just recorded — losing a
+completion, which is the one failure this app must not have. Now it reads the file every time
+and assigns only on a real change.

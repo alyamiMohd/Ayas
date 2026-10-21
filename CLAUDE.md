@@ -10,21 +10,28 @@ The shipped example habit is reading one Quran ayah a day, but the sequence mode
 
 Full product framing: [docs/PRODUCT_VISION.md](docs/PRODUCT_VISION.md).
 
-## The single most important fact
+## Status: it builds, it has never run
 
-**This codebase has never been compiled.** It was written on Windows, where no Swift or iOS
-toolchain exists. The Xcode project is generated and structurally validated, and the pure
-logic is covered by unit tests, but no compiler has read a single line and no device has run it.
+**The app compiles and all 42 unit tests pass.** Verified on CI — macOS runner, Xcode 15.4,
+iOS 17.5 SDK, iPhone 16 Pro simulator — first achieved 21 October 2026. Every push runs the
+same check: `.github/workflows/ios.yml`.
+
+**It has still never been launched.** CI builds the targets and runs unit tests. It does not
+start the app, draw a view, or add a widget. So:
+
+- No screen has ever been rendered. No Arabic text has ever been laid out.
+- The widget has never appeared on a Home Screen and no timeline has ever been served.
+- Nothing about the actual experience is verified.
 
 Consequences you must respect:
 
-- **Never report a build or test as passing unless you actually ran it** and can quote the
-  output. Not "this should compile". Not "the tests cover this".
-- Treat every feature as *written but unverified* until a real build proves otherwise.
-- The first real job on a Mac is `xcodebuild`, and the first findings will be compile errors.
-  That is expected, not a crisis. See [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
-- Once a build succeeds, come back and update this section and
-  [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md). It is the first thing that stops being true.
+- **Never report a build, test or behaviour as working unless you ran it** and can quote the
+  output. "It compiles" is now established; "it works" is not.
+- Treat UI and widget behaviour as unverified until you have watched it in a simulator.
+- The first job on a Mac is to launch it and add a widget —
+  [docs/MAC_SETUP.md](docs/MAC_SETUP.md#widget-verification).
+- When you verify something, update [docs/FEATURE_INVENTORY.md](docs/FEATURE_INVENTORY.md)
+  and [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md) in the same commit.
 
 ## Hard rules
 
@@ -134,6 +141,7 @@ CI runs the first two plus a macOS simulator build on every push:
 
 ## Platform note
 
-The original author worked on Windows. If you are on macOS, you can do things they could not —
-build, run, test, screenshot, profile. Prioritise that: a real build result is worth more to
-this project right now than any amount of new code.
+The original author worked on Windows and could never run this. CI now covers building and
+unit tests. What is still missing is everything that needs a running app: launching it,
+rendering Arabic, seeing the widget, watching a day roll over. If you are on macOS, that is
+where your time is worth most — more than any amount of new code.

@@ -13,15 +13,14 @@ The widget is not an accessory here. It is the product. Everything else exists t
 
 ## Status
 
-> ### ⚠️ This codebase has never been compiled.
+> ### It builds and its tests pass — but it has never been launched.
 >
-> It was written on Windows, where no Swift or iOS toolchain exists. The source is complete,
-> the Xcode project is generated and structurally validated, and the logic has unit tests —
-> but no compiler has read it and nothing has ever run.
+> CI compiles both targets and runs all 42 unit tests on every push. What has never happened
+> is the app actually running: no screen has been rendered, no Arabic text laid out, no
+> widget placed on a Home Screen.
 >
-> **Getting it to build on a Mac is the first and most valuable job.** Expect a batch of
-> compile errors; that is the expected starting state, not a crisis.
-> See [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
+> **Launching it in a simulator and adding a widget is the first and most valuable job.**
+> See [docs/MAC_SETUP.md](docs/MAC_SETUP.md#widget-verification).
 
 | | |
 | --- | --- |
@@ -29,12 +28,13 @@ The widget is not an accessory here. It is the product. Everything else exists t
 | Minimum | iOS 17 · Xcode 15 |
 | Dependencies | **None** |
 | Source | 39 Swift files, ~4,100 lines |
-| Build | Never attempted |
-| Tests | 4 suites, never executed |
+| Build | ✅ Passing — Xcode 15.4, iOS 17.5 SDK |
+| Tests | ✅ 42 / 42 passing across 4 suites |
+| Runtime | ❌ Never launched. No screenshots exist |
 | Release | Nothing published |
 
-No screenshots exist yet, for the reason above. The visual design is specified in
-[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
+The visual design is specified in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) until real
+screenshots exist.
 
 ---
 

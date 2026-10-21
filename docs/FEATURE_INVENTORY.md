@@ -7,14 +7,18 @@ reference.
 
 | Status | Means |
 | --- | --- |
-| `WRITTEN` | Implemented in source. **Never compiled or run** — see [CLAUDE.md](../CLAUDE.md). |
+| `TESTED` | Covered by a unit test that passes on CI. Evidenced. |
+| `WRITTEN` | Implemented and compiles, but **never seen running**. |
 | `PARTIAL` | Some of it exists; the gap is named. |
 | `PLANNED` | Agreed as wanted, not started. Tracked in [ROADMAP.md](ROADMAP.md). |
 | `DECLINED` | Deliberately excluded from the MVP. See [DECISIONS.md](DECISIONS.md). |
 
-Because nothing has been compiled, **no feature in this repository is currently verified at
-runtime.** `WRITTEN` is the ceiling until someone runs a build. Treat the whole table as a
-list of claims to test, not a list of guarantees.
+Everything here compiles — the build passes on CI. The 42 unit tests cover day boundaries,
+streak logic, the Quran dataset and persistence, and those entries are marked `TESTED`.
+
+**Nothing marked `WRITTEN` has ever been seen running.** No view has rendered, no widget has
+appeared on a Home Screen. Treat those rows as claims to confirm in a simulator, not as
+guarantees — [B1](KNOWN_ISSUES.md#b1).
 
 ---
 
@@ -29,8 +33,8 @@ list of claims to test, not a list of guarantees.
 | Edit a habit | `WRITTEN` | `HabitEditorView.swift`, mode `.edit` |
 | Delete a habit (with confirm step) | `WRITTEN` | `HabitEditorView.swift` → `deleteSection` |
 | Multiple habits side by side | `WRITTEN` | `AyasDocument.habits` is an array throughout |
-| Streak, best streak, total days | `WRITTEN` | `Shared/Model/Habit.swift:80`, `:103` |
-| 14-day history strip | `WRITTEN` | `Shared/Model/Habit.swift:117`, `Ayas/Components/WeekStrip.swift` |
+| Streak, best streak, total days | `TESTED` | `Shared/Model/Habit.swift:80`, `:103`; `AyasTests/StreakTests.swift` |
+| 14-day history strip | `PARTIAL` | Data `TESTED` (`Habit.swift:117`); the view never rendered |
 | Empty state with one-tap Quran habit | `WRITTEN` | `Ayas/Components/EmptyStateView.swift:5` |
 | Settings: appearance (system/light/dark) | `WRITTEN` | `Ayas/Screens/SettingsView.swift:4` |
 | Settings: when a new day begins (0–4am) | `WRITTEN` | `Shared/Model/AyasDocument.swift:32` |
@@ -62,13 +66,13 @@ list of claims to test, not a list of guarantees.
 
 | Feature | Status | Evidence |
 | --- | --- | --- |
-| Full Quran, 6,236 ayahs, Uthmani script | `WRITTEN` | `Shared/Content/Quran/ar.uthmani.txt` |
-| English translation (Saheeh International) | `WRITTEN` | `Shared/Content/Quran/en.sahih.txt` |
-| Surah metadata (name, meaning, counts) | `WRITTEN` | `Shared/Content/Quran/surahs.json` |
-| Byte-offset random access | `WRITTEN` | `Shared/Content/QuranLibrary.swift` |
+| Full Quran, 6,236 ayahs, Uthmani script | `TESTED` | `AyasTests/SequenceTests.swift` round-trips every ayah |
+| English translation (Saheeh International) | `TESTED` | same suite |
+| Surah metadata (name, meaning, counts) | `TESTED` | same suite |
+| Byte-offset random access | `TESTED` | same suite, plus a CI integrity check on the index |
 | Choose a starting surah/ayah | `WRITTEN` | `HabitEditorView.quranStart` |
-| Wraps at the end of the Quran | `WRITTEN` | `Shared/Content/QuranLibrary.swift:65` |
-| Generic numbered sequences (Page 1, 2, …) | `WRITTEN` | `Shared/Model/HabitSequence.swift:8` |
+| Wraps at the end of the Quran | `TESTED` | `Shared/Content/QuranLibrary.swift:65` |
+| Generic numbered sequences (Page 1, 2, …) | `TESTED` | `Shared/Model/HabitSequence.swift:8` |
 | Habits with no sequence | `WRITTEN` | `HabitSequence.none` |
 | Additional translations | `PLANNED` | Drop in a `.txt`/`.idx` pair; see [QURAN_CONTENT.md](QURAN_CONTENT.md) |
 | Arabic UI localisation | `PLANNED` | Strings are currently English literals |
@@ -78,14 +82,14 @@ list of claims to test, not a list of guarantees.
 
 | Feature | Status | Evidence |
 | --- | --- | --- |
-| Single JSON document in an App Group | `WRITTEN` | `Shared/Store/DocumentStorage.swift:8` |
-| Cross-process coordinated atomic writes | `WRITTEN` | `DocumentStorage` — `NSFileCoordinator` + `.atomic` |
+| Single JSON document in an App Group | `TESTED` | `AyasTests/PersistenceTests.swift` |
+| Cross-process coordinated atomic writes | `TESTED` | same suite, two stores over one file |
 | Fallback to local sandbox if group missing | `WRITTEN` | `DocumentStorage.init`, surfaced in Settings |
-| Corrupt document quarantined, not destroyed | `WRITTEN` | `DocumentStorage.quarantine` |
-| Forward-compatible decoding | `WRITTEN` | `AyasDocument.init(from:)`, enum decoders |
-| App picks up widget writes on foreground | `WRITTEN` | `Shared/Store/HabitStore.swift:45`, `RootView.onChange(scenePhase)` |
-| Streaks correct across DST / timezones | `WRITTEN` | `Shared/Model/DayKey.swift`, `AyasTests/DayKeyTests.swift` |
-| Unit tests: day, streak, sequence, persistence | `WRITTEN` | `AyasTests/` — 4 files, never executed |
+| Corrupt document quarantined, not destroyed | `TESTED` | same suite |
+| Forward-compatible decoding | `TESTED` | same suite — unknown enums and missing keys |
+| App picks up widget writes on foreground | `TESTED` | same suite; the bug it caught is [R4](KNOWN_ISSUES.md) |
+| Streaks correct across DST / timezones | `TESTED` | `AyasTests/DayKeyTests.swift` |
+| Unit tests: day, streak, sequence, persistence | `TESTED` | 42 tests, 4 suites, green on CI |
 | iCloud sync | `DECLINED` | Out of MVP scope |
 | Notifications | `DECLINED` | The widget *is* the reminder. [DECISIONS.md](DECISIONS.md#d2) |
 | Accounts / backend | `DECLINED` | Fully offline by design |
@@ -100,9 +104,9 @@ analytics, Apple Watch app, Android. All excluded deliberately from the MVP.
 
 ## Known gaps between docs and reality
 
-- Nothing in this file has been observed working. The first Mac session should convert
-  `WRITTEN` entries to a verified status as it confirms them, and record failures in
-  [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
+- **No `WRITTEN` row has been observed working.** That covers every screen, every gesture and
+  the whole widget. Converting them is the next session's main job
+  ([B1](KNOWN_ISSUES.md#b1)).
 - Accessibility has labels on the main controls but has not been tested with VoiceOver or
   Dynamic Type. Treat as `PARTIAL`.
 - No screenshots exist, because the app has never rendered. The design intent is recorded in

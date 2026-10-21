@@ -73,9 +73,12 @@ In Xcode:
 2. Destination dropdown → any **iPhone 16** simulator.
 3. Press **▶** (⌘R).
 
-> **Expect this to fail the first time.** The code has never been compiled —
-> see [KNOWN_ISSUES.md](KNOWN_ISSUES.md#b1). Errors
-> appear in the Issue navigator (⌘5). This is the first real job on the project.
+> This build passes on CI (Xcode 15.4, iOS 17.5 SDK), so it should succeed. If it does not,
+> something about this machine differs and that is worth reporting before working around it.
+> Errors appear in the Issue navigator (⌘5).
+>
+> **What has never happened is the app running** — see
+> [KNOWN_ISSUES.md](KNOWN_ISSUES.md#b1). Step 6 below is the genuinely new ground.
 
 Or from the command line, which gives more legible errors:
 
